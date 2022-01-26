@@ -1,0 +1,33 @@
+---
+title: "Homework1 Sam Whitttaker"
+author: "Sam Whittaker"
+date: "1/26/2022"
+output: html_document
+---
+Goal: To test the hypothesis of the paper: "Hibernation constrains brain size evolution in mammals" through 
+
+2nd Goal: To test my own hypothesis that Primate brain size is affected by their diebt type, carnivous primes will have the largest brains. 
+Data shown below 
+```{r}
+head(Supplementary_material)
+summary(Supplementary_material)
+```
+First place to investigate is to see if any correlation can be determined through a boxplot. 
+
+```{r}
+`Hibernation (0=No, 1=Yes)`<-as.character(Supplementary_material$hibernation)
+mode(hibernation)
+`Brain Mass (g)`<- Supplementary_material$`brain mass`
+ggplot(date=Supplementary_material) +
+  geom_boxplot(mapping = aes(x=`Hibernation (0=No, 1=Yes)`, groups=1, y=`Brain Mass (g)`,))
+         
+```
+
+While there are many more sample from the non-hibernating animals and a wider range of values, a correltaion is still visable. The boxplot does show that the non-hibernating animals have a larger brain mass even without including the 2 outliers. This indicates that hibernation may in fact limit brain mass. 
+
+A statistical test needs to be done in order to further show that this hypothesis is supported. The test of choice is a Welch Two Sample t-test.
+
+```{r}
+t.test(Supplementary_material$hibernation, Supplementary_material$`brain mass`)
+```
+
