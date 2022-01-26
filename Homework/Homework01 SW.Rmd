@@ -5,7 +5,6 @@ date: "1/10/2020"
 output: html_document
 ---
 
-Testing
 
 This code helps set up the R markdown document to make a nice clean html file for sharing. 
 Click the green triangle to run the code chunk. 
