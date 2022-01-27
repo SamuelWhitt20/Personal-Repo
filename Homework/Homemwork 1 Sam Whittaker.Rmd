@@ -14,20 +14,35 @@ summary(Supplementary_material)
 ```
 First place to investigate is to see if any correlation can be determined through a boxplot. 
 
-```{r}
+```{r, fig.height=2.5}
 `Hibernation (0=No, 1=Yes)`<-as.character(Supplementary_material$hibernation)
-mode(hibernation)
 `Brain Mass (g)`<- Supplementary_material$`brain mass`
-ggplot(date=Supplementary_material) +
-  geom_boxplot(mapping = aes(x=`Hibernation (0=No, 1=Yes)`, groups=1, y=`Brain Mass (g)`,))
-         
+ggplot(Supplementary_material, aes(x = `Hibernation (0=No, 1=Yes)`, y = `Brain Mass (g)`)) + 
+   geom_boxplot() + coord_flip()
 ```
+*Borrowed akraf's idea to use coord_flip() to make the boxplot look nicer* 
 
 While there are many more sample from the non-hibernating animals and a wider range of values, a correltaion is still visable. The boxplot does show that the non-hibernating animals have a larger brain mass even without including the 2 outliers. This indicates that hibernation may in fact limit brain mass. 
 
 A statistical test needs to be done in order to further show that this hypothesis is supported. The test of choice is a Welch Two Sample t-test.
 
 ```{r}
-t.test(Supplementary_material$hibernation, Supplementary_material$`brain mass`)
+t.test(Supplementary_material$`brain mass`, Supplementary_material$hibernation)
 ```
 
+With p-value < 2.2e-16 we can reject the null hypothesis meaning that the effect of hibernation on brain mass is significant. So hibernation resluting in lower brain mass is supported by the data. 
+
+Goal 1: completed 
+Goal 2: To test my own hypothesis that Primate brain size is affected by their diet type, carnivorous primes will have the largest brains. 
+
+```{r, fig.height=2.5}
+Diet<-as.character(Supplementary_material$diet)
+ggplot(Supplementary_material, aes(x = Diet, y = `Brain Mass (g)`)) + 
+   geom_boxplot() + coord_flip()
+```
+
+At first glance a correlation is not very clear due to the large outlines amount herbivores. At further inspection you can see that herbivores and carnivores have slightly larger brain masses then those of omnivores and garnivores. Further signfigance testing is needed to see the relationship. 
+
+```{r}
+t.test(`Brain Mass (g)`, Diet)
+```
