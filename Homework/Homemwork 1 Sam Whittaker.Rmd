@@ -6,7 +6,7 @@ output: html_document
 ---
 Goal: To test the hypothesis of the paper: "Hibernation constrains brain size evolution in mammals" through 
 
-2nd Goal: To test my own hypothesis that Primate brain size is affected by their diet type
+2nd Goal: To test my own hypothesis that brain size is affected by their diet type
 Data shown below 
 ```{r}
 head(Supplementary_material)
