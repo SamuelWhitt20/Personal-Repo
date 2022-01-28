@@ -18,7 +18,8 @@ First place to investigate is to see if any correlation can be determined throug
 `Hibernation (0=No, 1=Yes)`<-as.character(Supplementary_material$hibernation)
 `Brain Mass (g)`<- Supplementary_material$`brain mass`
 ggplot(Supplementary_material, aes(x = `Hibernation (0=No, 1=Yes)`, y = `Brain Mass (g)`)) + 
-   geom_boxplot() + coord_flip()
+   geom_boxplot() + coord_flip() 
+
 ```
 *Borrowed akraf's idea to use coord_flip() to make the box plot look nicer* 
 
@@ -30,7 +31,7 @@ A statistical test needs to be done in order to further show that this hypothesi
 t.test(Supplementary_material$`brain mass`, Supplementary_material$hibernation)
 ```
 
-With p-value < 2.2e-16 we can reject the null hypothesis meaning that the effect of hibernation on brain mass is significant. So hibernation resluting in lower brain mass is supported by the data. 
+With p-value < 2.2e-16 we can reject the null hypothesis meaning that the effect of hibernation on brain mass is significant. So hibernation resulting in lower brain mass is supported by the data. The data is likely skewed however due to two brain masses that are over 10x larger then most of the other brain mass measurements. 
 
 Goal 1: completed 
 Goal 2: To test my own hypothesis that brain size is affected by their diet type.
@@ -46,4 +47,4 @@ At first glance a correlation is not very clear due to the large outlines amount
 ```{r}
 t.test(Supplementary_material$`brain mass`, Supplementary_material$diet)
 ```
-With p-value < 2.2e-16 we can reject the null hypothesis meaning that the effect of diet on brain mass is significant. The type of diet is shown to be correlated with brain mass. 
+With p-value < 2.2e-16 we can reject the null hypothesis meaning that the effect of diet on brain mass is significant. The type of diet is shown to be correlated with brain mass. Data is likely very skewed however, due to two herbivores with brain masses that are over 10x as large as most of the other brain masses. Body mass to brain ratio is not considered in this test and would likely provide a more clear answer on if brain mass is affected by diet type.
