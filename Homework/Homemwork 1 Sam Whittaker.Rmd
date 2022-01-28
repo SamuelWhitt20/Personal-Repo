@@ -44,5 +44,6 @@ ggplot(Supplementary_material, aes(x = Diet, y = `Brain Mass (g)`)) +
 At first glance a correlation is not very clear due to the large outlines amount herbivores. At further inspection you can see that herbivores and carnivores have slightly larger brain masses then those of omnivores and garnivores. Further signfigance testing is needed to see the relationship. 
 
 ```{r}
-t.test(`Brain Mass (g)`, Diet)
+t.test(Supplementary_material$`brain mass`, Supplementary_material$diet)
 ```
+With p-value < 2.2e-16 we can reject the null hypothesis meaning that the effect of diet on brain mass is significant. The type of diet is shown to be correlated with brain mass. 
