@@ -53,3 +53,6 @@ At first glance a correlation is not very clear due to the large outlines amount
 summary(`Anova Diet`)
 ```
 With a Pr(>F) of 0.00466 we can reject the null hypothesis meaning that the effect of diet on brain mass is significant. The type of diet is shown to be correlated with brain mass. Data is likely very skewed however, due to two herbivores with brain masses that are over 10x as large as most of the other brain masses. Body mass to brain ratio is not considered in this test and would likely provide a more clear answer on if brain mass is affected by diet type.
+
+*Worked with Olivia Dyer to fix the box plots by adding log10 to them*
+*Used PDFs in cheat sheet folder on github page for a lot of the code*
