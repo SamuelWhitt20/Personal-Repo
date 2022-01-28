@@ -18,7 +18,9 @@ First place to investigate is to see if any correlation can be determined throug
 `Hibernation (0=No, 1=Yes)`<-as.character(Supplementary_material$hibernation)
 `Brain Mass (g)`<- Supplementary_material$`brain mass`
 ggplot(Supplementary_material, aes(x = `Hibernation (0=No, 1=Yes)`, y = log10(`Brain Mass (g)`))) + 
-   geom_boxplot()
+   geom_boxplot() +
+   theme_classic() +
+  labs(x= "Hibernation", y= "log(Brain Mass (g))", title = "Hibernation Affect on Brain Mass", caption = "0 = Non-Hibernating, 1 = Hibernating") 
 
 ```
 
@@ -38,7 +40,10 @@ Goal 2: To test my own hypothesis that brain size is affected by their diet type
 ```{r, fig.height=2.5}
 Diet<-as.character(Supplementary_material$diet)
 ggplot(Supplementary_material, aes(x = Diet, y = log10(`Brain Mass (g)`))) + 
-   geom_boxplot() 
+   geom_boxplot() +
+  theme_classic() +
+  labs(x= "Diet", y= "log(Brain Mass (g))", title = "Diets Affect on Brain Mass", caption = "0 = Herbivore, 1 = Garnivore, 2 = Omnivore, 3 = Carnivore") 
+  
 ```
 
 At first glance a correlation is not very clear due to the large outlines amount herbivores. At further inspection you can see that herbivores and carnivores have slightly larger brain masses then those of omnivores and garnivores. Further significance testing is needed to see the relationship. 
@@ -47,4 +52,4 @@ At first glance a correlation is not very clear due to the large outlines amount
 `Anova Diet` <- aov(diet ~ `brain mass`, data=Supplementary_material)
 summary(`Anova Diet`)
 ```
-With F ratio<1 we can reject the null hypothesis meaning that the effect of diet on brain mass is significant. The type of diet is shown to be correlated with brain mass. Data is likely very skewed however, due to two herbivores with brain masses that are over 10x as large as most of the other brain masses. Body mass to brain ratio is not considered in this test and would likely provide a more clear answer on if brain mass is affected by diet type.
+With a Pr(>F) of 0.00466 we can reject the null hypothesis meaning that the effect of diet on brain mass is significant. The type of diet is shown to be correlated with brain mass. Data is likely very skewed however, due to two herbivores with brain masses that are over 10x as large as most of the other brain masses. Body mass to brain ratio is not considered in this test and would likely provide a more clear answer on if brain mass is affected by diet type.
